@@ -18,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Add item</title>
+    <title>Add Item</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -30,20 +30,24 @@
 
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
-    <script type="text/javascript">
-      function loginf(){
-        window.location.replace("login.html");
-      }
-    </script>
+    <style type="text/css">
+      input {
+        width: 300px;
+      } 
+      textarea {
+        width: 300px;
+        height: 100px;
+      }      
+    </style>
 
   </head>
 
-  <body id="page-top" style="background-color: lightblue">
+  <body id="page-top" background="img/background/add_item_bg.jpg">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">PP Storage</a>
+        <a class="navbar-brand js-scroll-trigger">PP Storage</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -53,10 +57,13 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="home.php">View Storage</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="">Add Item</a>
+             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="user_menu.php" style="background-color:green;">Hello <?php echo $fname; ?>!</a>
             </li>
-            <li cl
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="logout.php" style="background-color:red;">Logout</a>
+            </li>
+            <li cl >
           </ul>
         </div>
       </div>
@@ -64,6 +71,52 @@
 
     <br>
     <br>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+      <div class="container">
+        <h2 class="text-center" style="color: white; border: 10px; background-color: gray">Add Item</h2>
+        <hr>
+        <div align="center">
+          <form method="post">
+            <input type="text" name="" placeholder="Name"p> <br><br>
+            <input type="text" name="" placeholder="Price"> <br><br>
+            <input type="text" name="" placeholder="Amount"> <br><br>
+            <textarea placeholder="description"></textarea> <br><br>
+            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+            
+            <button>Add</button>
+            <button>Clear form</button>
+
+          </form>
+
+        </div>
+        <div class="row">
+
+      
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+      <div class="footer-below">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              Copyright &copy; PP STORAGE 2017
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top d-lg-none">
+      <a class="btn btn-primary js-scroll-trigger" href="#page-top">
+        <i class="fa fa-chevron-up"></i>
+      </a>
+    </div>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

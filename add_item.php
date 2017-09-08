@@ -79,10 +79,10 @@
         <hr>
         <div align="center">
           <form method="post">
-            <input type="text" name="" placeholder="Name"p> <br><br>
-            <input type="text" name="" placeholder="Price"> <br><br>
-            <input type="text" name="" placeholder="Amount"> <br><br>
-            <textarea placeholder="description"></textarea> <br><br>
+            <input type="text" name="pName" placeholder="Name"> <br><br>
+            <input type="text" name="pPrice" placeholder="Price"> <br><br>
+            <input type="text" name="pAmount" placeholder="Amount"> <br><br>
+            <textarea placeholder="description" name="pDescription"></textarea> <br><br>
             <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
             
             <button>Add</button>

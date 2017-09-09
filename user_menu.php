@@ -6,6 +6,11 @@
   $address = $_SESSION['address'];
   $img = $_SESSION['img'];
   $last_login = $_SESSION['lastlogin'];
+  $aut_lev = $_SESSION['Aut_lev'];
+  if($fname == NULL){
+    header("location: 404.html");
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +50,22 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="">View Storage</a>
+              <a class="nav-link js-scroll-trigger" href="home.php">View Storage</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="">Add Item</a>
+              <a class="nav-link js-scroll-trigger" href="add_item.php">Add Item</a>
             </li>
-            <li cl
+            <?php
+              if($aut_lev == 'Administrator'){
+                echo '<li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="add_user.html" style="background-color:#FEEF03;color:black;">Add user</a>
+                  </li>';
+              }
+
+            ?>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="php/logout.php" style="background-color:red;">Logout</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -66,30 +81,31 @@
         <hr> 
       </div>
 
-      <div>
+      <div align="center">
+        <?php printf('<img src="%s" style="widtd:480px; height:320px;">',$img);?>
         <table>
           <tr>
-            <th colspan="4"> <img src="img/nont.jpg" style="margin-left: 25%; width: 200px; height: 200px; stroke: 20;"> </th>
+            <th> Firstname: </th>
+            <th> <?php echo $fname; ?> </th>
           </tr>
           <tr>
-            <td>First name: </td>
+            <th> Lastname: </th>
+            <th> <?php echo $lname; ?> </th>
           </tr>
           <tr>
-            <td>Last name: </td>
+            <th> Address: </th>
+            <th> <?php echo $address; ?></th>
           </tr>
           <tr>
-            <td>Address: </td>
+            <th>Authorization Level:</th>
+            <th> <?php echo $aut_lev; ?></th>
           </tr>
           <tr>
-            <td>Authorization: </td>
+            <th>Last Login:</th>
+            <th> <?php echo $last_login; ?></th>
           </tr>
-          <tr>
-            <td>Last Login: </td>
-          </ tr>
-
         </table>
       </div>
-
     </section>
 
     <!-- Footer -->

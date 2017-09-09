@@ -3,6 +3,13 @@
   include("php/conn.php");
   $fname = $_SESSION['fname'];
   $lname = $_SESSION['lname'];
+  $aut_lev = $_SESSION['Aut_lev'];
+  if($fname == NULL){
+    header("location: 404.html");
+  }
+
+  $view_all_goods_sql = 'SELECT * FROM `goods` WHERE 1';
+  $query_goods = mysqli_query($conn, $view_all_goods_sql);
 ?>
 
 <!DOCTYPE html>
@@ -53,11 +60,19 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="logout.php"></a>
             </li>
+            <?php
+              if($aut_lev == 'Administrator'){
+                echo '<li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="add_user.html" style="background-color:#FEEF03; color:black;">Add user</a>
+                  </li>';
+              }
+
+            ?>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="user_menu.php" style="background-color:green;">Hello <?php echo $fname; ?>!</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="logout.php" style="background-color:red;">Logout</a>
+              <a class="nav-link js-scroll-trigger" href="php/logout.php" style="background-color:red;">Logout</a>
             </li>
           </ul>
 
@@ -74,19 +89,22 @@
         <h2 class="text-center">Products in Store</h2>
         <hr class="star-primary">
         <div class="row">
-
-          <div class="col-sm-4 portfolio-item">
-            <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
+        <?php
+          while ($goods_array = mysqli_fetch_array($query_goods)) {
+            echo '<div class="col-sm-4 portfolio-item">
+              <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
               <div class="caption">
                 <div class="caption-content">
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
-              </div>
-              <img class="img-fluid" src="img/portfolio/cabin.png" alt="">
-              <p align="center"> Name </p>
-            </a>
-          </div>
-
+              </div>';
+            printf('<img class="img-fluid" src="%s" alt="">',$goods_array['Image']);
+            printf('<p align="center"> %s </p>',$goods_array['Name']);
+            echo ' </a>';
+            echo '</div>';
+          }
+          
+        ?>
         </div>
       </div>
     </section>
@@ -114,51 +132,49 @@
 
 
     <!-- Portfolio Modals -->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl"></div>
+    <?php
+    $goods_array = mysqli_query($conn, $view_all_goods_sql);
+    while ($goods_array = mysqli_fetch_array($query_goods)) {
+      echo '<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+              <div class="lr">
+                <div class="rl"></div>
+              </div>
             </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 mx-auto">
-                <div class="modal-body">
-                  <h2>Name Changed!</h2>
-                  <hr class="star-primary">
-                  <img class="img-fluid img-centered" src="img/portfolio/cabin.png" alt="" style="width: 360px; height: 240px;">
-                  <p>Use this area of the page to describe your project. The icon above is part of a free icon set by
-                    <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                  <ul class="list-inline item-details">
-                    <li>Client:
-                      <strong>
-                        <a href="http://startbootstrap.com">Start Bootstrap</a>
-                      </strong>
-                    </li>
-                    <li>Date:
-                      <strong>
-                        <a href="http://startbootstrap.com">April 2014</a>
-                      </strong>
-                    </li>
-                    <li>Service:
-                      <strong>
-                        <a href="http://startbootstrap.com">Web Development</a>
-                      </strong>
-                    </li>
-                  </ul>
-                  <button class="btn btn-success" type="button" data-dismiss="modal">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  <div class="modal-body">';
+                    printf('<h2>%s</h2>',$goods_array['Name']);
+                    echo '<hr class="star-primary">';
+                    printf('<img class="img-fluid img-centered" src="img/portfolio/cabin.png" alt="" style="width: 360px; height: 240px;">',$goods_array['Image']);
+                    printf('<p>%s</p>',$goods_array['Description']);
+                    echo '<ul class="list-inline item-details">';
+                    echo '<li>Client:
+                        <strong>';
+                          printf('<a>Price: %s</a>',$goods_array['Price']);
+                     echo '</strong>
+                      </li>
+                      <li>Date:
+                        <strong>';
+                          printf('<a>Amount: %s</a>',$goods_array['Amount']);
+                        echo '</strong>
+                      </li>
+                    </ul>';
+                  echo '<button class="btn btn-success" type="button" data-dismiss="modal">
                     <i class="fa fa-times"></i>
                     Close</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
+      </div>';
+    }
+    ?>
 
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>

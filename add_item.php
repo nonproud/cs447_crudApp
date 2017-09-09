@@ -6,6 +6,7 @@
   $address = $_SESSION['address'];
   $img = $_SESSION['img'];
   $last_login = $_SESSION['lastlogin'];
+  $aut_lev = $_SESSION['Aut_lev'];
 ?>
 
 <!DOCTYPE html>
@@ -57,6 +58,14 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="home.php">View Storage</a>
             </li>
+            <?php
+              if($aut_lev == 'Administrator'){
+                echo '<li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="add_user.html" style="background-color:#FEEF03; color:black;">Add user</a>
+                  </li>';
+              }
+
+            ?>
              <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="user_menu.php" style="background-color:green;">Hello <?php echo $fname; ?>!</a>
             </li>
@@ -78,14 +87,14 @@
         <h2 class="text-center" style="color: white; border: 10px; background-color: gray">Add Item</h2>
         <hr>
         <div align="center">
-          <form method="post">
+          <form method="post" action="php/insert_item.php">
             <input type="text" name="pName" placeholder="Name"> <br><br>
             <input type="text" name="pPrice" placeholder="Price"> <br><br>
             <input type="text" name="pAmount" placeholder="Amount"> <br><br>
             <textarea placeholder="description" name="pDescription"></textarea> <br><br>
             <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
             
-            <button>Add</button>
+            <input type="submit" value="Add" name="submit" style="width: 100px;">
             <button>Clear form</button>
 
           </form>

@@ -91,9 +91,9 @@
         <div class="row">
         <?php
           while ($goods_array = mysqli_fetch_array($query_goods)) {
-            echo '<div class="col-sm-4 portfolio-item">
-              <a class="portfolio-link" href="#portfolioModal1" data-toggle="modal">
-              <div class="caption">
+            echo '<div class="col-sm-4 portfolio-item">';
+            printf('<a class="portfolio-link" href="#portfolioModal%s" data-toggle="modal">',$goods_array['ID']);
+             echo' <div class="caption">
                 <div class="caption-content">
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
@@ -133,10 +133,10 @@
 
     <!-- Portfolio Modals -->
     <?php
-    $goods_array = mysqli_query($conn, $view_all_goods_sql);
+    $query_goods = mysqli_query($conn, $view_all_goods_sql);
     while ($goods_array = mysqli_fetch_array($query_goods)) {
-      echo '<div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+      printf('<div class="portfolio-modal modal fade" id="portfolioModal%s" tabindex="-1" role="dialog" aria-hidden="true">',$goods_array['ID']);
+        echo '<div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
               <div class="lr">
@@ -149,23 +149,23 @@
                   <div class="modal-body">';
                     printf('<h2>%s</h2>',$goods_array['Name']);
                     echo '<hr class="star-primary">';
-                    printf('<img class="img-fluid img-centered" src="img/portfolio/cabin.png" alt="" style="width: 360px; height: 240px;">',$goods_array['Image']);
-                    printf('<p>%s</p>',$goods_array['Description']);
-                    echo '<ul class="list-inline item-details">';
-                    echo '<li>Client:
-                        <strong>';
-                          printf('<a>Price: %s</a>',$goods_array['Price']);
-                     echo '</strong>
-                      </li>
-                      <li>Date:
-                        <strong>';
-                          printf('<a>Amount: %s</a>',$goods_array['Amount']);
-                        echo '</strong>
-                      </li>
-                    </ul>';
-                  echo '<button class="btn btn-success" type="button" data-dismiss="modal">
-                    <i class="fa fa-times"></i>
-                    Close</button>
+                    printf('<img class="img-fluid img-centered" src="%s" alt="" style="width: 360px; height: 240px;">',$goods_array['Image']);
+                    printf('<p>%s</p>',$goods_array['Describtion']);
+                    echo '<div align="center">';
+                    echo '<table style="width: 50%;">
+                        <tr>
+                          <th> Price: </th>';
+                          printf('<th> %s Baht </th>',$goods_array['Price']);
+                        echo '</tr>
+                        <tr>
+                          <th> Amount: </th>';
+                        printf('<th> %s </th>', $goods_array['Amount']);
+                       echo '</tr>
+                      </table>
+                      </div><br><br>';
+                  printf('<button class="btn btn-success" type="button" data-dismiss="modal" style="background-color:red;" onclick="deleteGood(%s)">',$goods_array['ID']);
+                    echo '<i class="fa fa-times"></i>
+                    Delete</button>
                   </div>
                 </div>
               </div>

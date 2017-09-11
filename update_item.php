@@ -2,11 +2,10 @@
   session_start();
   include("php/conn.php");
   $fname = $_SESSION['fname'];
-  $lname = $_SESSION['lname'];
-  $address = $_SESSION['address'];
-  $img = $_SESSION['img'];
-  $last_login = $_SESSION['lastlogin'];
   $aut_lev = $_SESSION['Aut_lev'];
+  $id = $_REQUEST['id'];
+  $item = mysqli_query($conn, 'SELECT * FROM `goods` WHERE ID = "'.mysqli_real_escape_string($conn, $id).'";');
+  $item_array = mysqli_fetch_array($item);
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +18,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Add Item</title>
+    <title>Update Item</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -41,9 +40,15 @@
       }      
     </style>
     <script type="text/javascript" src="js/my_script.js"></script>
+    <script>
+      function click(){
+        alert("Clicked!");
+      }
+    </script>
+
   </head>
 
-  <body id="page-top" background="img/background/add_item_bg.jpg">
+  <body id="page-top" background="img/background/IMG_4148.jpg">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -84,23 +89,41 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
       <div class="container">
-        <h2 class="text-center" style="color: white; border: 10px; background-color: gray">Add Item</h2>
+        <h2 class="text-center" style="color: white; border: 10px; background-color: black">Edit Item</h2>
         <hr>
         <div align="center">
-          <form method="post" action="php/insert_item.php">
-            <input type="text" name="pName" placeholder="Name"> <br><br>
-            <input type="text" name="pPrice" placeholder="Price"> <br><br>
-            <input type="text" name="pAmount" placeholder="Amount"> <br><br>
-            <textarea placeholder="description" name="pDescription"></textarea> <br><br>
-            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+          <form method="post" action="php/update_item.php" id="update_form">
+            <?php printf('<input type="hidden" name="id" value="%s">',$id); ?>
+            <table width="50%">
+          <tr>
+            <th> Name: </th>
+            <th><?php printf('<input type="text" name="pName" value="%s"> <br><br>',$item_array['Name']) ?></th>
+          </tr>
+          <tr>
+            <th> Price: </th>
+            <th> <?php printf('<input type="text" name="pPrice" value="%s"> <br><br>',$item_array['Price']) ?></th>
+            <th>  Bath.</th>
+          </tr>
+          <tr>
+            <th> Amount: </th>
+            <th> <?php printf('<input type="text" name="pAmount" value="%s"> <br><br>',$item_array['Amount']) ?></th>
+            <th>Pcs.</th>
+          </tr>
+          <tr>
+            <th>Describtion:</th>
+            <th><?php printf('<textarea name="pDescription">%s</textarea> <br><br>',$item_array['Describtion']) ?></th>
+          </tr>
+        </table>    
+            <!--<input type="file" name="fileToUpload" id="fileToUpload"><br><br>-->
             
-            <input type="submit" value="Add" name="submit" style="width: 100px;">
-            <button>Clear form</button>
+            <input type="submit" value="Update" name="submit" style="width: 100px;">
+            <input type="button" name="clearform" onclick="clearform('update_form')" value="Clear">
 
           </form>
 
         </div>
         <div class="row">
+        <button onclick="click()">dddd</button>
 
       
         </div>

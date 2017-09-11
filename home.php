@@ -34,10 +34,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/freelancer.min.css" rel="stylesheet">
-    <script type="text/javascript">
-      function loginf(){
-        window.location.replace("login.html");
-      }
+    <script type="text/javascript" src="js/my_script.js">
     </script>
 
   </head>
@@ -58,7 +55,7 @@
               <a class="nav-link js-scroll-trigger" href="add_item.php">Add Item</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="logout.php"></a>
+              <a class="nav-link js-scroll-trigger" href="/php/logout.php"></a>
             </li>
             <?php
               if($aut_lev == 'Administrator'){
@@ -155,17 +152,21 @@
                     echo '<table style="width: 50%;">
                         <tr>
                           <th> Price: </th>';
-                          printf('<th> %s Baht </th>',$goods_array['Price']);
-                        echo '</tr>
+                          printf('<th> %s  </th>',$goods_array['Price']);
+                        echo '<th> Psc. </th></tr>
                         <tr>
                           <th> Amount: </th>';
                         printf('<th> %s </th>', $goods_array['Amount']);
-                       echo '</tr>
+                       echo '<th> Baht</th></tr>
                       </table>
                       </div><br><br>';
-                  printf('<button class="btn btn-success" type="button" data-dismiss="modal" style="background-color:red;" onclick="deleteGood(%s)">',$goods_array['ID']);
-                    echo '<i class="fa fa-times"></i>
-                    Delete</button>
+                      echo '<form action="update_item.php" method="post" name="update">';
+                      printf('<input type="hidden" value="%s" name="id">
+                    <input type="submit" value="Edit"style="background-color: green; color: white;"></form>',$goods_array['ID']);
+                      echo '<form action="php/delete_item.php" method="post" name="delete_form">';
+                      printf('<input type="hidden" value="%s" name="id">
+                    <input type="submit" value="X Delete"style="background-color: red; color: white;""></form>',$goods_array['ID'],$goods_array['Name']);
+                  echo'
                   </div>
                 </div>
               </div>

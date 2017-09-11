@@ -82,7 +82,7 @@
       </div>
 
       <div align="center">
-        <?php printf('<img src="%s" style="widtd:480px; height:320px;">',$img);?>
+        <?php printf('<img src="%s" style="widtd:200px; height:200px;">',$img);?>
         <table>
           <tr>
             <th> Firstname: </th>
@@ -106,6 +106,7 @@
           </tr>
         </table>
       </div>
+
     </section>
 
     <!-- Footer -->

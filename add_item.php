@@ -43,7 +43,7 @@
     <script type="text/javascript" src="js/my_script.js"></script>
   </head>
 
-  <body id="page-top" background="img/background/add_item_bg.jpg">
+  <body id="page-top" background="white">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -84,18 +84,17 @@
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
       <div class="container">
-        <h2 class="text-center" style="color: white; border: 10px; background-color: gray">Add Item</h2>
+        <h2 class="text-center" style="color: white; border: 10px; background-color: black">Add Item</h2>
         <hr>
         <div align="center">
-          <form method="post" action="php/insert_item.php">
-            <input type="text" name="pName" placeholder="Name"> <br><br>
-            <input type="text" name="pPrice" placeholder="Price"> <br><br>
-            <input type="text" name="pAmount" placeholder="Amount"> <br><br>
-            <textarea placeholder="description" name="pDescription"></textarea> <br><br>
-            <input type="file" name="fileToUpload" id="fileToUpload"><br><br>
+          <form method="post" action="php/insert_item.php" enctype="multipart/form-data">
+            <input type="text" name="pName" placeholder="Name" required=""> <br><br>
+            <input type="number" name="pPrice" placeholder="Price" required=""> <br><br>
+            <input type="number" name="pAmount" placeholder="Amount" required=""> <br><br>
+            <textarea placeholder="description" name="pDescription" required=""></textarea> <br><br>
+            <input type="text" name="imgPath" placeholder="Image URL" required=""><br><br>
             
             <input type="submit" value="Add" name="submit" style="width: 100px;">
-            <button>Clear form</button>
 
           </form>
 

@@ -21,21 +21,4 @@
 		echo '<script> alert("Uptate item successfully!");
 		window.location.replace("/ppstorage/home.php"); </script>';
 	}
-
-// 	// upload image
-// 	$target_dir = "/ppstorage/goods_img/";
-// 	$target_file = $target_dir . basename($_FILES["fileToUpload"][$pId]);
-// 	$uploadOk = 1;
-// 	$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-// 	// Check if image file is a actual image or fake image
-// 	if(isset($_POST["submit"])) {
-//     	if($check !== false) {
-//         	echo "File is an image - " . $check["mime"] . ".";
-//         	$uploadOk = 1;
-//     	} else {
-//         	echo "File is not an image.";
-//         $uploadOk = 0;
-//     }
-// }
-// //window.location.replace("/ppstorage/home.php");
 ?>

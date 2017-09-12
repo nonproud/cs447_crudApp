@@ -55,7 +55,7 @@
               <a class="nav-link js-scroll-trigger" href="add_item.php">Add Item</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/php/logout.php"></a>
+              <a class="nav-link js-scroll-trigger" href=""></a>
             </li>
             <?php
               if($aut_lev == 'Administrator'){
@@ -95,7 +95,7 @@
                   <i class="fa fa-search-plus fa-3x"></i>
                 </div>
               </div>';
-            printf('<img class="img-fluid" src="%s" alt="">',$goods_array['Image']);
+            printf('<img class="img-fluid" src="%s" alt="" style="width:320px; height:240px;">',$goods_array['Image']);
             printf('<p align="center"> %s </p>',$goods_array['Name']);
             echo ' </a>';
             echo '</div>';
@@ -153,11 +153,11 @@
                         <tr>
                           <th> Price: </th>';
                           printf('<th> %s  </th>',$goods_array['Price']);
-                        echo '<th> Psc. </th></tr>
+                        echo '<th> Baht </th></tr>
                         <tr>
                           <th> Amount: </th>';
                         printf('<th> %s </th>', $goods_array['Amount']);
-                       echo '<th> Baht</th></tr>
+                       echo '<th> Pcs.</th></tr>
                       </table>
                       </div><br><br>';
                       echo '<form action="update_item.php" method="post" name="update">';

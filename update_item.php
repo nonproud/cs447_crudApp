@@ -48,7 +48,7 @@
 
   </head>
 
-  <body id="page-top" background="img/background/IMG_4148.jpg">
+  <body id="page-top" background="white">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -92,40 +92,45 @@
         <h2 class="text-center" style="color: white; border: 10px; background-color: black">Edit Item</h2>
         <hr>
         <div align="center">
+        <div align="center">
+          
+              <th><?php printf('<img class="img-fluid" src="%s" alt="" style="width:320px; height:240px;">',$item_array['Image']);?> </th>
+            
+        </div><br>
           <form method="post" action="php/update_item.php" id="update_form">
             <?php printf('<input type="hidden" name="id" value="%s">',$id); ?>
             <table width="50%">
+
           <tr>
-            <th> Name: </th>
-            <th><?php printf('<input type="text" name="pName" value="%s"> <br><br>',$item_array['Name']) ?></th>
+            <th style="background-color: white;"> Name: </th>
+            <th><?php printf('<input type="text" name="pName" value="%s" required> <br><br>',$item_array['Name']) ?></th>
           </tr>
           <tr>
-            <th> Price: </th>
-            <th> <?php printf('<input type="text" name="pPrice" value="%s"> <br><br>',$item_array['Price']) ?></th>
+            <th style="background-color: white;"> Price: </th>
+            <th> <?php printf('<input type="number" name="pPrice" value="%s" required> <br><br>',$item_array['Price']) ?></th>
             <th>  Bath.</th>
           </tr>
           <tr>
-            <th> Amount: </th>
-            <th> <?php printf('<input type="text" name="pAmount" value="%s"> <br><br>',$item_array['Amount']) ?></th>
+            <th style="background-color: white;"> Amount: </th>
+            <th> <?php printf('<input type="number" name="pAmount" value="%s" required> <br><br>',$item_array['Amount']) ?></th>
             <th>Pcs.</th>
           </tr>
           <tr>
-            <th>Describtion:</th>
-            <th><?php printf('<textarea name="pDescription">%s</textarea> <br><br>',$item_array['Describtion']) ?></th>
+            <th style="background-color: white;">Describtion:</th>
+            <th><?php printf('<textarea name="pDescription" required>%s</textarea> <br><br>',$item_array['Describtion']) ?></th>
           </tr>
+          <tr>
+            <th style="background-color: white;"> Image URL: </th>
+            <th> <?php printf('<input type="text" name="imgPath" value="%s" required> <br><br>',$item_array['Image']) ?></th>
+          </tr>
+
         </table>    
             <!--<input type="file" name="fileToUpload" id="fileToUpload"><br><br>-->
             
             <input type="submit" value="Update" name="submit" style="width: 100px;">
-            <input type="button" name="clearform" onclick="clearform('update_form')" value="Clear">
 
           </form>
 
-        </div>
-        <div class="row">
-        <button onclick="click()">dddd</button>
-
-      
         </div>
       </div>
     </section>
